@@ -6,27 +6,20 @@
 #include "hardware/adc.h"
 #include "pico/bootrom.h"
 #include <math.h>
-#include "lib/animacao_boll.h"
+#include "lib/animacao_0.h"
 #include "pio_matrix.pio.h"
 
-
 #define NUMERO_DE_LEDS 25
-
-//Pino de saida da matriz de leds
 #define OUT_PINO 7
 
-
-//rotina para definição da intensidade de cores do led
-uint32_t matrix_rgb(double b, double r, double g)
-{
-  unsigned char R, G, B;
-  R = r * 255;
-  G = g * 255;
-  B = b * 255;
-  return (G << 24) | (R << 16) | (B << 8);
+uint32_t matrix_rgb(double r, double g, double b) {
+    unsigned char R, G, B;
+    R = r * 255;
+    G = g * 255;
+    B = b * 255;
+    return (G << 24) | (R << 16) | (B << 8);
 }
 
-//rotina para acionar a matrix de leds - ws2812b
 void desenho_pio(double *desenho, uint32_t valor_led, PIO pio, uint sm, double r, double g, double b) {
     for (int16_t i = 0; i < NUMERO_DE_LEDS; i++) {
         if (i % 2 == 0) {
@@ -39,135 +32,191 @@ void desenho_pio(double *desenho, uint32_t valor_led, PIO pio, uint sm, double r
     }
 }
 
-void exibir_animacao(double* animacao[], int num_desenchos, uint32_t valor_led, PIO pio, uint sm, double r, double g, double b, int delay_ms) {
-
-    for (int i = 0; i < num_desenchos; i++) {
-
+void exibir_animacao(double* animacao[], int num_desenhos, uint32_t valor_led, PIO pio, uint sm, double r, double g, double b, int delay_ms) {
+    for (int i = 0; i < num_desenhos; i++) {
         desenho_pio(animacao[i], valor_led, pio, sm, r, g, b);
-        sleep_ms(delay_ms);  // Atraso entre as animações
-    
+        sleep_ms(delay_ms);
     }
-   
 }
-    
 
-
-
-
-
-//array dos frames da animacao da bola
+// Frames da animação 0
 double* animacao_0[] = {desenho1, desenho2, desenho3, desenho4, desenho5, desenho6, desenho7};
 int num_desenhos = sizeof(animacao_0) / sizeof(animacao_0[0]);
 
-//TODO: Adicione outras array para as animações
-/*  double* animacao_1[] = {};
-*   int numero_desenhos = sizeof(animacao_1) / sizeof(animacao_1[0]);
+
+/*
+    TODO: ADICIONAR VARIAVEIS DOS FRAMES DE ANIMAÇÃO 1
+
+*/
+
+/*
+    TODO: ADICIONAR VARIAVEIS DOS FRAMES DE ANIMAÇÃO 2
+
+*/
+
+/*
+    TODO: ADICIONAR VARIAVEIS DOS FRAMES DE ANIMAÇÃO 3
+
+*/
+
+/*
+    TODO: ADICIONAR VARIAVEIS DOS FRAMES DE ANIMAÇÃO 4
+
+*/
+
+/*
+    TODO: ADICIONAR VARIAVEIS DOS FRAMES DE ANIMAÇÃO 5
+
+*/
+
+/*
+    TODO: ADICIONAR VARIAVEIS DOS FRAMES DE ANIMAÇÃO 6
+
+*/
+
+/*
+    TODO: ADICIONAR VARIAVEIS DOS FRAMES DE ANIMAÇÃO 7
+
+*/
+
+/*
+    TODO: ADICIONAR VARIAVEIS DOS FRAMES DE ANIMAÇÃO 8
+
 */
 
 
-int main()
-{
-    PIO pio = pio0; 
-    bool ok;
-    uint16_t i;
-    uint32_t valor_led;
-    double r = 0.0, b = 0.0 , g = 0.0;
 
-    //coloca a frequência de clock para 128 MHz, facilitando a divisão pelo clock
-    ok = set_sys_clock_khz(128000, false);
+// Funcão para acionar a animação 0
+void acionar_animacao_0(uint32_t valor_led, PIO pio, uint sm, double r, double g, double b) {
+    exibir_animacao(animacao_0, num_desenhos, valor_led, pio, sm, r, g, b, 100);
+}
 
+/*
+    TODO: Funcão para acionar a animação 1
+
+*/
+
+/*
+    TODO: Funcão para acionar a animação 2
+
+*/
+
+/*
+    TODO: Funcão para acionar a animação 3
+
+*/
+
+/*
+    TODO: Funcão para acionar a animação 4
+
+*/
+
+/*
+    TODO: Funcão para acionar a animação 5
+
+*/
+
+/*
+    TODO: Funcão para acionar a animação 6
+
+*/
+
+/*
+    TODO: Funcão para acionar a animação 7
+
+*/
+
+/*
+    TODO: Funcão para acionar a animação 8
+
+*/
+
+void desligar_leds(uint32_t valor_led, PIO pio, uint sm, double r, double g, double b) {
+    desenho_pio(desenho0, valor_led, pio, sm, r, g, b);
+}
+
+
+//Acender todos os leds da matriz em azul na intensidade 100% 
+void acender_azul(uint32_t valor_led, PIO pio, uint sm, double r, double g, double b) {
+    for (int i = 0; i < NUMERO_DE_LEDS; i++) {          
+        valor_led = matrix_rgb(0.0, 0.0, 1.0);
+        pio_sm_put_blocking(pio, sm, valor_led);
+    }
+}
+
+/*
+    TODO:  Função para acender todos os LEDs
+           na cor vermelha, no nível de intensidade de 80% 
+
+*/
+
+/*
+    TODO:  Função para acender todos os LEDs 
+           na cor verde, no nível de intensidade de 50% 
+
+*/
+
+/*
+    TODO:  Função para acender todos os LEDs na cor branca 
+           no nível de intensidade de 20%
+
+*/
+
+// Estrutura para mapeamento de teclas e ações
+typedef struct {
+    char key;
+    void (*action)(uint32_t, PIO, uint, double, double, double);
+} KeyAction;
+
+KeyAction key_actions[] = {
+    {'0', acionar_animacao_0},
+    {'A', desligar_leds},
+    {'B', acender_azul},
+
+    //TODO: Outras teclas e ações...
+};
+
+const int num_key_actions = sizeof(key_actions) / sizeof(key_actions[0]);
+
+// Função para processar a tecla pressionada
+void processar_tecla(char key, uint32_t valor_led, PIO pio, uint sm, double r, double g, double b) {
+    for (int i = 0; i < num_key_actions; i++) {
+        if (key_actions[i].key == key) {
+            key_actions[i].action(valor_led, pio, sm, r, g, b);
+            return;
+        }
+    }
+    // Caso padrão: tecla inválida
+    desligar_leds(valor_led, pio, sm, r, g, b);
+}
+
+int main() {
+    PIO pio = pio0;
+    uint32_t valor_led = 0;
+    double r = 0.0, b = 0.0, g = 0.0;
+
+    set_sys_clock_khz(128000, false);
     stdio_init_all();
-    
 
-    printf("iniciando a transmissão PIO");
-    if (ok) printf("clock set to %ld\n", clock_get_hz(clk_sys));
-
-    //Iniciação do keypad matricial
+    //Inicialização do Keypad
     init_keypad();
 
-    //configurações da PIO
     uint offset = pio_add_program(pio, &pio_matrix_program);
     uint sm = pio_claim_unused_sm(pio, true);
     pio_matrix_program_init(pio, sm, offset, OUT_PINO);
 
-    //inicializando a matriz de leds desligados
-    desenho_pio(desenho0, valor_led, pio, sm, r, g, b); 
+    //Inicializa a matriz de leds desligados
+    desenho_pio(desenho0, valor_led, pio, sm, r, g, b);
 
     while (true) {
-        
-        /*TODO: Troca o getchar() por get_key e captar os comando do keypad para que as condições funcionem
-        * OBS: Resolver o pq não ta captando a tecla do keypad
-        */
 
+        //TODO:  Substituir 'get_key()' por 'get_key()' do keypad
+        char key = getchar(); 
 
-        //getchar() é para captar entrada do terminal 
-        char key = getchar(); // Captura tecla não bloqueante
-        printf("%c\n", key);
-
-        switch (key)
-        {
-            case '0':
-                exibir_animacao(animacao_0, num_desenhos, valor_led, pio, sm, r, g, b, 100);
-                break;                 
-            case '1':
-                /*TODO: Animação 2 */
-                break;
-            case '2':
-                /*TODO: Animação 3 */
-                break;
-            case '3':
-                /*TODO: Animação 4 */
-                break;
-            case '4':
-                /*TODO: Animação 5 */
-                break;
-            case '5':
-                /* Animação 6 */
-                break;
-            case '6':
-                /*TODO: Animação 7 */
-                break;
-            case '7':
-                /*TOD: Animação 8 */
-                break;
-            case '8':
-                /*TODO: Animação 9 */
-                break;
-            case 'A':
-                desenho_pio(desenho0, valor_led, pio, sm, r, g, b); 
-                break;
-            case 'B':
-                /*
-                TODO:  Caso a tecla B seja acionada, todos os LEDs deverão ser 
-                       ligados na cor azul, no nível de intensidade de 100% da 
-                       luminosidade máxima.
-                */
-                break;
-            case 'C':
-                /*
-                    TODO: Caso a tecla C seja acionada, todos os LEDs deverão ser 
-                    ligados na cor vermelha, no nível de intensidade de 80% 
-                    da luminosidade máxima.
-                */
-                break;
-            case 'D':
-                /*
-                    TODO: Caso a tecla D seja acionada, todos os LEDs deverão ser 
-                    ligados na cor verde, no nível de intensidade de 50% da 
-                    luminosidade máxima.
-                */
-                break;
-            case '#':
-                /*
-                    TODO: Caso a tecla # seja acionada, todos os LEDs deverão ser 
-                    ligados na cor branca, no nível de intensidade de 20% da 
-                    luminosidade máxima.
-                */
-                break;
-            default:
-                //apaga os leds caso clique em uma tecla invalida
-                desenho_pio(desenho0, valor_led, pio, sm, r, g, b); 
-                break;
+        if (key != EOF) {
+            printf("%c\n", key);
+            processar_tecla(key, valor_led, pio, sm, r, g, b);
         }
+        sleep_ms(10);
     }
 }
