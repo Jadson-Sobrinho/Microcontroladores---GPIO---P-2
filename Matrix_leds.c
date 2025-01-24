@@ -50,6 +50,7 @@ int num_desenhos = sizeof(animacao_0) / sizeof(animacao_0[0]);
 */
     //Frames da animacao 2, por Wilton
     double* animacao_2[] = {frame0, frame1, frame2, frame3, frame4, frame5, frame6, frame7, frame8, frame9};
+    int num_desenhos2 = sizeof(animacao_2) / sizeof(animacao_2[0]);
 
 /*
     TODO: ADICIONAR VARIAVEIS DOS FRAMES DE ANIMAÇÃO 3
@@ -98,7 +99,7 @@ void acionar_animacao_0(uint32_t valor_led, PIO pio, uint sm, double r, double g
 */
     //Funcao para acionar animacao 2, por Wilton
 void acionar_animacao_2(uint32_t valor_led, PIO pio, uint sm, double r, double g, double b) {
-    exibir_animacao(animacao_2, num_desenhos, valor_led, pio, sm, r, g, b, 100);
+    exibir_animacao(animacao_2, num_desenhos2, valor_led, pio, sm, r, g, b, 100);
 }
 
 /*
