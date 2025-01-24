@@ -95,8 +95,11 @@ void acionar_animacao_0(uint32_t valor_led, PIO pio, uint sm, double r, double g
 
 /*
     TODO: Funcão para acionar a animação 2
-
 */
+    //Funcao para aciotar animacao 2
+void acionar_animacao_2(uint32_t valor_led, PIO pio, uint sm, double r, double g, double b) {
+    exibir_animacao(animacao_2, num_desenhos, valor_led, pio, sm, r, g, b, 100);
+}
 
 /*
     TODO: Funcão para acionar a animação 3
@@ -167,6 +170,7 @@ typedef struct {
 
 KeyAction key_actions[] = {
     {'0', acionar_animacao_0},
+    {'2', acionar_animacao_2},
     {'A', desligar_leds},
     {'B', acender_azul},
 
