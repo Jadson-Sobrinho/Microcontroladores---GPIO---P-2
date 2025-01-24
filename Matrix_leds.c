@@ -147,8 +147,14 @@ void acender_azul(uint32_t valor_led, PIO pio, uint sm, double r, double g, doub
 /*
     TODO:  Função para acender todos os LEDs
            na cor vermelha, no nível de intensidade de 80% 
-
 */
+//funcao para acender led VERMELHO no 80% (r = vermelho, g = verde, b = azul)
+void acender_verm80(uint32_t valor_led, PIO pio, uint sm, double r, double g, double b) {
+    for (int i = 0; i < NUMERO_DE_LEDS; i++) {
+        valor_led = matrix_rgb(0.8, 0.0, 0.0);
+        pio_sm_put_blocking(pio, sm, valor_led);
+    }
+}
 
 /*
     TODO:  Função para acender todos os LEDs 
@@ -173,6 +179,7 @@ KeyAction key_actions[] = {
     {'2', acionar_animacao_2},
     {'A', desligar_leds},
     {'B', acender_azul},
+    {'C', acender_verm80},
 
     //TODO: Outras teclas e ações...
 };
