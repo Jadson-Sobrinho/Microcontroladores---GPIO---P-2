@@ -39,24 +39,31 @@ void desenho_pio(double *desenho, uint32_t valor_led, PIO pio, uint sm, double r
     }
 }
 
-void exibir_animacao(double* desenhos[], int num_desenchos, uint32_t valor_led, PIO pio, uint sm, double r, double g, double b, int delay_ms) {
-
+void exibir_animacao(double* animacao[], int num_desenchos, uint32_t valor_led, PIO pio, uint sm, double r, double g, double b, int delay_ms) {
 
     for (int i = 0; i < num_desenchos; i++) {
 
-        desenho_pio(desenhos[i], valor_led, pio, sm, r, g, b);
+        desenho_pio(animacao[i], valor_led, pio, sm, r, g, b);
         sleep_ms(delay_ms);  // Atraso entre as animações
-
-        
+    
     }
    
 }
     
 
 
-//array dos frames
-double* desenhos[] = {desenho1, desenho2, desenho3, desenho4, desenho5, desenho6, desenho7};
-int num_desenchos = sizeof(desenhos) / sizeof(desenhos[0]);
+
+
+
+//array dos frames da animacao da bola
+double* animacao_0[] = {desenho1, desenho2, desenho3, desenho4, desenho5, desenho6, desenho7};
+int num_desenhos = sizeof(animacao_0) / sizeof(animacao_0[0]);
+
+//TODO: Adicione outras array para as animações
+/*  double* animacao_1[] = {};
+*   int numero_desenhos = sizeof(animacao_1) / sizeof(animacao_1[0]);
+*/
+
 
 int main()
 {
@@ -99,9 +106,9 @@ int main()
 
         switch (key)
         {
-            case '0': 
-                exibir_animacao(desenhos, num_desenchos, valor_led, pio, sm, r, g, b, 100);
-                break;                   
+            case '0':
+                exibir_animacao(animacao_0, num_desenhos, valor_led, pio, sm, r, g, b, 100);
+                break;                 
             case '1':
                 /*TODO: Animação 2 */
                 break;
@@ -162,6 +169,5 @@ int main()
                 desenho_pio(desenho0, valor_led, pio, sm, r, g, b); 
                 break;
         }
-        
     }
 }
