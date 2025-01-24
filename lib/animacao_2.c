@@ -1,4 +1,5 @@
 #include "animacao_2.h"
+//Animacao da tecla 2 do keypad, por Wilton
 //Quadros para a explosao
     double frame0[25] = {0.0, 0.0, 0.0, 0.0, 0.0,
                          0.0, 0.0, 0.0, 0.0, 0.0,
