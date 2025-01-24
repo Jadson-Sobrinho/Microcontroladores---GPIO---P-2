@@ -7,6 +7,7 @@
 #include "pico/bootrom.h"
 #include <math.h>
 #include "lib/animacao_0.h"
+#include "lib/animacao_2.h"
 #include "pio_matrix.pio.h"
 
 #define NUMERO_DE_LEDS 25
@@ -46,8 +47,9 @@ int num_desenhos = sizeof(animacao_0) / sizeof(animacao_0[0]);
 
 /*
     TODO: ADICIONAR VARIAVEIS DOS FRAMES DE ANIMAÇÃO 2
-
 */
+    //Frames da animacao 2
+    double* animacao_2[] = {frame0, frame1, frame2, frame3, frame4, frame5, frame6, frame7, frame8, frame9};
 
 /*
     TODO: ADICIONAR VARIAVEIS DOS FRAMES DE ANIMAÇÃO 3
