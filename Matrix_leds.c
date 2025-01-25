@@ -9,6 +9,7 @@
 #include "lib/animacao_0.h"
 #include "lib/animacao_2.h"
 #include "lib/animacao_6.h"
+#include "lib/animacao_8.h"
 #include "pio_matrix.pio.h"
 
 #define NUMERO_DE_LEDS 25
@@ -81,7 +82,8 @@ int num_desenhos_6 = sizeof(animacao_6) / sizeof(animacao_6[0]);
     TODO: ADICIONAR VARIAVEIS DOS FRAMES DE ANIMAÇÃO 8
 
 */
-
+double* animacao_8[] = {frame1_8, frame2_8, frame3_8, frame4_8, frame5_8, frame6_8, frame7_8, frame8_8, frame9_8};
+int num_desenhos_8 = sizeof(animacao_8) / sizeof(animacao_8[0]);
 
 
 // Funcão para acionar a animação 0
@@ -131,6 +133,9 @@ void acionar_animacao_6(uint32_t valor_led, PIO pio, uint sm, double r, double g
     TODO: Funcão para acionar a animação 8
 
 */
+void acionar_animacao_8(uint32_t valor_led, PIO pio, uint sm, double r, double g, double b) {
+    exibir_animacao(animacao_8, num_desenhos_8, valor_led, pio, sm, r, g, b, 300);
+}
 
 void desligar_leds(uint32_t valor_led, PIO pio, uint sm, double r, double g, double b) {
     desenho_pio(desenho0, valor_led, pio, sm, r, g, b);
@@ -163,11 +168,19 @@ void acender_verm80(uint32_t valor_led, PIO pio, uint sm, double r, double g, do
 
 */
 
-/*
-    TODO:  Função para acender todos os LEDs na cor branca 
-           no nível de intensidade de 20%
 
-*/
+// TODO:  Função para acender todos os LEDs na cor branca no nível de intensidade de 20%
+// AUTOR: Keven Christian Alves Candido
+
+void acender_branco20(uint32_t valor_led, PIO pio, uint sm, double r, double g, double b) {
+    for (int i = 0; i < NUMERO_DE_LEDS; i++)
+    {
+        // branco = r,g,b iguais; intensidade 20% = 0.2
+        valor_led = matrix_rgb(0.2, 0.2, 0.2);
+        pio_sm_put_blocking(pio, sm, valor_led);
+    }
+    
+}
 
 // Estrutura para mapeamento de teclas e ações
 typedef struct {
@@ -178,10 +191,12 @@ typedef struct {
 KeyAction key_actions[] = {
     {'0', acionar_animacao_0},
     {'2', acionar_animacao_2},
+    {'8', acionar_animacao_8},
     {'A', desligar_leds},
     {'B', acender_azul},
     {'C', acender_verm80},
-    {'6', acionar_animacao_6}
+    {'6', acionar_animacao_6},
+    {'#', acender_branco20}
     //TODO: Outras teclas e ações...
 };
 
