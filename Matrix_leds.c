@@ -24,7 +24,7 @@ uint32_t matrix_rgb(double r, double g, double b) {
 
 void desenho_pio(double *desenho, uint32_t valor_led, PIO pio, uint sm, double r, double g, double b) {
     for (int16_t i = 0; i < NUMERO_DE_LEDS; i++) {
-            valor_led = matrix_rgb(desenho[24 - i], desenho[24 - i], desenho[24 - i]);
+            valor_led = matrix_rgb(desenho[24 - i], 0.0, 0.0);
             pio_sm_put_blocking(pio, sm, valor_led);
     }
 }
@@ -219,7 +219,6 @@ int main() {
 
     while (true) {
 
-        //TODO:  Substituir 'get_key()' por 'get_key()' do keypad
         char key = get_key(); 
 
         if (key != 0) {
