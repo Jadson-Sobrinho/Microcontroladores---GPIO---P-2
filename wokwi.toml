@@ -1,4 +1,4 @@
 [wokwi]
 version = 1
-firmware = 'build/Matriz_leds.uf2'
-elf = 'build/Matriz_leds.elf'
+firmware = 'build/Matrix_leds.uf2'
+elf = 'build/Matrix_leds.elf'
