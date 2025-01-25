@@ -163,11 +163,19 @@ void acender_verm80(uint32_t valor_led, PIO pio, uint sm, double r, double g, do
 
 */
 
-/*
-    TODO:  Função para acender todos os LEDs na cor branca 
-           no nível de intensidade de 20%
 
-*/
+// TODO:  Função para acender todos os LEDs na cor branca no nível de intensidade de 20%
+// AUTOR: Keven Christian Alves Candido
+
+void acender_branco20(uint32_t valor_led, PIO pio, uint sm, double r, double g, double b) {
+    for (int i = 0; i < NUMERO_DE_LEDS; i++)
+    {
+        // branco = r,g,b iguais; intensidade 20% = 0.2
+        valor_led = matrix_rgb(0.2, 0.2, 0.2);
+        pio_sm_put_blocking(pio, sm, valor_led);
+    }
+    
+}
 
 // Estrutura para mapeamento de teclas e ações
 typedef struct {
@@ -181,7 +189,8 @@ KeyAction key_actions[] = {
     {'A', desligar_leds},
     {'B', acender_azul},
     {'C', acender_verm80},
-    {'6', acionar_animacao_6}
+    {'6', acionar_animacao_6},
+    {'#', acender_branco20}
     //TODO: Outras teclas e ações...
 };
 

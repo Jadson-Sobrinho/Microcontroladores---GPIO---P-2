@@ -36,7 +36,7 @@ char get_key() {
         for (int col = 0; col < COLS; col++) {
             if (!gpio_get(gpio_cols[col])) { // Verifica se a coluna está pressionada
                 gpio_put(gpio_rows[row], 1); // Restaura a linha para HIGH
-                return keys[row][col];      // Retorna a tecla pressionada
+                return keys[row][col];    // Retorna a tecla pressionada
             }
         }
 
