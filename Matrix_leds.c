@@ -7,6 +7,7 @@
 #include "pico/bootrom.h"
 #include <math.h>
 #include "lib/animacao_0.h"
+#include "lib/animacao_6.h"
 #include "pio_matrix.pio.h"
 
 #define NUMERO_DE_LEDS 25
@@ -64,10 +65,9 @@ int num_desenhos = sizeof(animacao_0) / sizeof(animacao_0[0]);
 
 */
 
-/*
-    TODO: ADICIONAR VARIAVEIS DOS FRAMES DE ANIMAÇÃO 6
-
-*/
+// Frames da animação 6
+double* animacao_6[] = {frame1_6, frame2_6, frame3_6, frame4_6, frame5_6, frame6_6, frame7_6, frame8_6, frame9_6};
+int num_desenhos_6 = sizeof(animacao_6) / sizeof(animacao_6[0]);
 
 /*
     TODO: ADICIONAR VARIAVEIS DOS FRAMES DE ANIMAÇÃO 7
@@ -111,10 +111,10 @@ void acionar_animacao_0(uint32_t valor_led, PIO pio, uint sm, double r, double g
 
 */
 
-/*
-    TODO: Funcão para acionar a animação 6
-
-*/
+// Função para acionar a animação 6
+void acionar_animacao_6(uint32_t valor_led, PIO pio, uint sm, double r, double g, double b) {
+    exibir_animacao(animacao_6, num_desenhos_6, valor_led, pio, sm, r, g, b, 300);
+}
 
 /*
     TODO: Funcão para acionar a animação 7
@@ -167,7 +167,7 @@ KeyAction key_actions[] = {
     {'0', acionar_animacao_0},
     {'A', desligar_leds},
     {'B', acender_azul},
-
+    {'6', acionar_animacao_6}
     //TODO: Outras teclas e ações...
 };
 
@@ -206,9 +206,9 @@ int main() {
     while (true) {
 
         //TODO:  Substituir 'get_key()' por 'get_key()' do keypad
-        char key = getchar(); 
+        char key = get_key(); 
 
-        if (key != EOF) {
+        if (key != 0) {
             printf("%c\n", key);
             processar_tecla(key, valor_led, pio, sm, r, g, b);
         }
