@@ -7,6 +7,7 @@
 #include "pico/bootrom.h"
 #include <math.h>
 #include "lib/animacao_0.h"
+#include "lib/animacao_2.h"
 #include "lib/animacao_6.h"
 #include "pio_matrix.pio.h"
 
@@ -47,8 +48,10 @@ int num_desenhos = sizeof(animacao_0) / sizeof(animacao_0[0]);
 
 /*
     TODO: ADICIONAR VARIAVEIS DOS FRAMES DE ANIMAÇÃO 2
-
 */
+    //Frames da animacao 2, por Wilton
+    double* animacao_2[] = {frame0, frame1, frame2, frame3, frame4, frame5, frame6, frame7, frame8, frame9};
+    int num_desenhos2 = sizeof(animacao_2) / sizeof(animacao_2[0]);
 
 /*
     TODO: ADICIONAR VARIAVEIS DOS FRAMES DE ANIMAÇÃO 3
@@ -93,8 +96,11 @@ void acionar_animacao_0(uint32_t valor_led, PIO pio, uint sm, double r, double g
 
 /*
     TODO: Funcão para acionar a animação 2
-
 */
+    //Funcao para acionar animacao 2, por Wilton
+void acionar_animacao_2(uint32_t valor_led, PIO pio, uint sm, double r, double g, double b) {
+    exibir_animacao(animacao_2, num_desenhos2, valor_led, pio, sm, r, g, b, 100);
+}
 
 /*
     TODO: Funcão para acionar a animação 3
@@ -142,8 +148,14 @@ void acender_azul(uint32_t valor_led, PIO pio, uint sm, double r, double g, doub
 /*
     TODO:  Função para acender todos os LEDs
            na cor vermelha, no nível de intensidade de 80% 
-
 */
+//funcao para acender led VERMELHO no 80% (r = vermelho, g = verde, b = azul), por Wilton
+void acender_verm80(uint32_t valor_led, PIO pio, uint sm, double r, double g, double b) {
+    for (int i = 0; i < NUMERO_DE_LEDS; i++) {
+        valor_led = matrix_rgb(0.8, 0.0, 0.0);
+        pio_sm_put_blocking(pio, sm, valor_led);
+    }
+}
 
 /*
     TODO:  Função para acender todos os LEDs 
@@ -165,8 +177,10 @@ typedef struct {
 
 KeyAction key_actions[] = {
     {'0', acionar_animacao_0},
+    {'2', acionar_animacao_2},
     {'A', desligar_leds},
     {'B', acender_azul},
+    {'C', acender_verm80},
     {'6', acionar_animacao_6}
     //TODO: Outras teclas e ações...
 };
