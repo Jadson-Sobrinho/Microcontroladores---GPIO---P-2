@@ -7,6 +7,7 @@
 #include "pico/bootrom.h"
 #include <math.h>
 #include "lib/animacao_0.h"
+#include "lib/animacao_1.h"
 #include "lib/animacao_2.h"
 #include "lib/animacao_6.h"
 #include "lib/animacao_8.h"
@@ -42,10 +43,9 @@ double* animacao_0[] = {desenho1, desenho2, desenho3, desenho4, desenho5, desenh
 int num_desenhos = sizeof(animacao_0) / sizeof(animacao_0[0]);
 
 
-/*
-    TODO: ADICIONAR VARIAVEIS DOS FRAMES DE ANIMAÇÃO 1
-
-*/
+// Frames da animacao 1
+double* animacao_1[] = {frame_1_1, frame_1_2, frame_1_3, frame_1_4, frame_1_5, frame_1_6, frame_1_7};
+int num_frames = sizeof(animacao_1) / sizeof(animacao_1[0]);
 
 /*
     TODO: ADICIONAR VARIAVEIS DOS FRAMES DE ANIMAÇÃO 2
@@ -89,10 +89,10 @@ void acionar_animacao_0(uint32_t valor_led, PIO pio, uint sm, double r, double g
     exibir_animacao(animacao_0, num_desenhos, valor_led, pio, sm, r, g, b, 100);
 }
 
-/*
-    TODO: Funcão para acionar a animação 1
-
-*/
+// Funcao para acionar a animacao 1
+void acionar_animacao_1(uint32_t valor_led, PIO pio, uint sm, double r, double g, double b){
+    exibir_animacao(animacao_1, num_frames, valor_led, pio, sm, r, g, b, 100);
+}
 
 /*
     TODO: Funcão para acionar a animação 2
@@ -158,12 +158,14 @@ void acender_verm80(uint32_t valor_led, PIO pio, uint sm, double r, double g, do
     }
 }
 
-/*
-    TODO:  Função para acender todos os LEDs 
-           na cor verde, no nível de intensidade de 50% 
-
-*/
-
+// TODO: Função para acender todos os LEDs  na cor verde, no nível de intensidade de 50%
+// AUTOR: Hercules Sampaio Oliveira
+void ascender_verde50(uint32_t valor_led, PIO pio, uint sm, double r, double g, double b){
+    for(int i=0; i<NUMERO_DE_LEDS; i++){
+        valor_led = matrix_rgb(0.0, 0.5, 0.0);
+        pio_sm_put_blocking(pio, sm, valor_led);
+    }
+}
 
 // TODO:  Função para acender todos os LEDs na cor branca no nível de intensidade de 20%
 // AUTOR: Keven Christian Alves Candido
@@ -186,11 +188,13 @@ typedef struct {
 
 KeyAction key_actions[] = {
     {'0', acionar_animacao_0},
+    {'1', acionar_animacao_1},
     {'2', acionar_animacao_2},
     {'8', acionar_animacao_8},
     {'A', desligar_leds},
     {'B', acender_azul},
     {'C', acender_verm80},
+    {'D', ascender_verde50},
     {'6', acionar_animacao_6},
     {'#', acender_branco20}
     //TODO: Outras teclas e ações...
