@@ -78,11 +78,9 @@ int num_desenhos_6 = sizeof(animacao_6) / sizeof(animacao_6[0]);
 
 */
 
-/*
-    TODO: ADICIONAR VARIAVEIS DOS FRAMES DE ANIMAÇÃO 8
-
-*/
-double* animacao_8[] = {frame1_8, frame2_8, frame3_8, frame4_8, frame5_8, frame6_8, frame7_8, frame8_8, frame9_8};
+//TODO: ADICIONAR VARIAVEIS DOS FRAMES DE ANIMAÇÃO 8
+// AUTOR: KEVEN CHRISTIAN ALVES CANDIDO
+double* animacao_8[] = {frame1_8, frame2_8, frame3_8, frame4_8, frame5_8, frame6_8};
 int num_desenhos_8 = sizeof(animacao_8) / sizeof(animacao_8[0]);
 
 
@@ -121,7 +119,7 @@ void acionar_animacao_2(uint32_t valor_led, PIO pio, uint sm, double r, double g
 
 // Função para acionar a animação 6
 void acionar_animacao_6(uint32_t valor_led, PIO pio, uint sm, double r, double g, double b) {
-    exibir_animacao(animacao_6, num_desenhos_6, valor_led, pio, sm, r, g, b, 300);
+    exibir_animacao(animacao_6, num_desenhos_6, valor_led, pio, sm, r, g, b, 100);
 }
 
 /*
@@ -129,10 +127,8 @@ void acionar_animacao_6(uint32_t valor_led, PIO pio, uint sm, double r, double g
 
 */
 
-/*
-    TODO: Funcão para acionar a animação 8
-
-*/
+// TODO: Funcão para acionar a animação 8
+// AUTOR: KEVEN CHRISTIAN ALVES CANDIDO
 void acionar_animacao_8(uint32_t valor_led, PIO pio, uint sm, double r, double g, double b) {
     exibir_animacao(animacao_8, num_desenhos_8, valor_led, pio, sm, r, g, b, 300);
 }
