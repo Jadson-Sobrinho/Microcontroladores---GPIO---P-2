@@ -9,9 +9,11 @@
 #include "lib/animacao_0.h"
 #include "lib/animacao_1.h"
 #include "lib/animacao_2.h"
+#include "lib/animacao_5.h"
 #include "lib/animacao_6.h"
 #include "lib/animacao_8.h"
 #include "pio_matrix.pio.h"
+
 
 #define NUMERO_DE_LEDS 25
 #define OUT_PINO 7
@@ -64,10 +66,9 @@ int num_frames = sizeof(animacao_1) / sizeof(animacao_1[0]);
 
 */
 
-/*
-    TODO: ADICIONAR VARIAVEIS DOS FRAMES DE ANIMAÇÃO 5
-
-*/
+/*Variaveis da animação 5*/
+double* animacao_5[] = {quadro0, quadro1, quadro2, quadro3, quadro4, quadro5, quadro6, quadro7, quadro8, quadro9, quadro10, quadro11, quadro12, quadro13, quadro14, quadro15, quadro16, quadro17, quadro18, quadro19, quadro20, quadro21};
+int num_desenhos_5 = sizeof(animacao_5) / sizeof(animacao_5[0]);
 
 // Frames da animação 6
 double* animacao_6[] = {frame1_6, frame2_6, frame3_6, frame4_6, frame5_6, frame6_6, frame7_6, frame8_6, frame9_6};
@@ -112,10 +113,10 @@ void acionar_animacao_2(uint32_t valor_led, PIO pio, uint sm, double r, double g
 
 */
 
-/*
-    TODO: Funcão para acionar a animação 5
-
-*/
+// Funcão para acionar a animação 5
+void acionar_animacao_5(uint32_t valor_led, PIO pio, uint sm, double r, double g, double b) {
+    exibir_animacao(animacao_5, num_desenhos_5, valor_led, pio, sm, r, g, b, 600);
+}
 
 // Função para acionar a animação 6
 void acionar_animacao_6(uint32_t valor_led, PIO pio, uint sm, double r, double g, double b) {
@@ -190,6 +191,7 @@ KeyAction key_actions[] = {
     {'0', acionar_animacao_0},
     {'1', acionar_animacao_1},
     {'2', acionar_animacao_2},
+    {'5', acionar_animacao_5},
     {'8', acionar_animacao_8},
     {'A', desligar_leds},
     {'B', acender_azul},
