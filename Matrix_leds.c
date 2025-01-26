@@ -39,7 +39,7 @@ void exibir_animacao(double* animacao[], int num_desenhos, uint32_t valor_led, P
 }
 
 // Frames da animação 0
-double* animacao_0[] = {desenho1, desenho2, desenho3, desenho4, desenho5, desenho6, desenho7};
+double* animacao_0[] = {desenho1, desenho2, desenho3, desenho4, desenho5, desenho6, desenho7, desenho8, desenho9, desenho10, desenho11, desenho12, desenho13, desenho14, desenho15, desenho16, desenho17, desenho18, desenho19, desenho20, desenho21, desenho22, desenho23, desenho24};
 int num_desenhos = sizeof(animacao_0) / sizeof(animacao_0[0]);
 
 
