@@ -5,6 +5,7 @@
 # Relatório
 
 **Quantidade total de membros:** 9
+
 **Quantidade de membros participantes:** 6
 
 ## **Distribuição de tarefas**
