@@ -9,6 +9,7 @@
 #include "lib/animacao_0.h"
 #include "lib/animacao_1.h"
 #include "lib/animacao_2.h"
+#include "lib/animacao_3.h"
 #include "lib/animacao_4.h"
 #include "lib/animacao_5.h"
 #include "lib/animacao_6.h"
@@ -62,6 +63,9 @@ int num_frames = sizeof(animacao_1) / sizeof(animacao_1[0]);
 
 */
 
+double* animacao_3[] = {frame00, frame01, frame02, frame03, frame04, frame05, frame06, frame07, frame08, frame09};
+int num_desenhos3 = sizeof(animacao_3) / sizeof(animacao_3[0]);
+
 /*Variveis da animação 4*/
 double* animacao_4[] = {desenho1_1, desenho2_2, desenho3_3, desenho4_4, desenho5_5, desenho6_6, desenho7_7, desenho8_8, desenho9_9, desenho10_10, desenho11_11, desenho12_12, desenho13_13, desenho14_14, desenho15_15, desenho16_16, desenho17_17, desenho18_18, desenho19_19, desenho20_20, desenho21_21, desenho22_22, desenho23_23, desenho24_24};
 int num_desenhos_4 = sizeof(animacao_4) / sizeof(animacao_4[0]);
@@ -107,6 +111,10 @@ void acionar_animacao_2(uint32_t valor_led, PIO pio, uint sm, double r, double g
     TODO: Funcão para acionar a animação 3
 
 */
+
+void acionar_animacao_3(uint32_t valor_led, PIO pio, uint sm, double r, double g, double b) {
+    exibir_animacao(animacao_3, num_desenhos3, valor_led, pio, sm, r, g, b, 100);
+}
 
 // Função para acionar a animação 4
 void acionar_animacao_4(uint32_t valor_led, PIO pio, uint sm, double r, double g, double b) {
@@ -192,6 +200,7 @@ KeyAction key_actions[] = {
     {'0', acionar_animacao_0},
     {'1', acionar_animacao_1},
     {'2', acionar_animacao_2},
+    {'3', acionar_animacao_3},
     {'4', acionar_animacao_4},
     {'5', acionar_animacao_5},
     {'8', acionar_animacao_8},
