@@ -9,6 +9,7 @@
 #include "lib/animacao_0.h"
 #include "lib/animacao_1.h"
 #include "lib/animacao_2.h"
+#include "lib/animacao_4.h"
 #include "lib/animacao_5.h"
 #include "lib/animacao_6.h"
 #include "lib/animacao_8.h"
@@ -61,10 +62,9 @@ int num_frames = sizeof(animacao_1) / sizeof(animacao_1[0]);
 
 */
 
-/*
-    TODO: ADICIONAR VARIAVEIS DOS FRAMES DE ANIMAÇÃO 4
-
-*/
+/*Variveis da animação 4*/
+double* animacao_4[] = {desenho1_1, desenho2_2, desenho3_3, desenho4_4, desenho5_5, desenho6_6, desenho7_7, desenho8_8, desenho9_9, desenho10_10, desenho11_11, desenho12_12, desenho13_13, desenho14_14, desenho15_15, desenho16_16, desenho17_17, desenho18_18, desenho19_19, desenho20_20, desenho21_21, desenho22_22, desenho23_23, desenho24_24};
+int num_desenhos_4 = sizeof(animacao_4) / sizeof(animacao_4[0]);
 
 /*Variaveis da animação 5*/
 double* animacao_5[] = {quadro0, quadro1, quadro2, quadro3, quadro4, quadro5, quadro6, quadro7, quadro8, quadro9, quadro10, quadro11, quadro12, quadro13, quadro14, quadro15, quadro16, quadro17, quadro18, quadro19, quadro20, quadro21};
@@ -108,15 +108,16 @@ void acionar_animacao_2(uint32_t valor_led, PIO pio, uint sm, double r, double g
 
 */
 
-/*
-    TODO: Funcão para acionar a animação 4
-
-*/
+// Função para acionar a animação 4
+void acionar_animacao_4(uint32_t valor_led, PIO pio, uint sm, double r, double g, double b) {
+    exibir_animacao(animacao_4, num_desenhos_4, valor_led, pio, sm, r, g, b, 100);
+}
 
 // Funcão para acionar a animação 5
 void acionar_animacao_5(uint32_t valor_led, PIO pio, uint sm, double r, double g, double b) {
     exibir_animacao(animacao_5, num_desenhos_5, valor_led, pio, sm, r, g, b, 600);
 }
+
 
 // Função para acionar a animação 6
 void acionar_animacao_6(uint32_t valor_led, PIO pio, uint sm, double r, double g, double b) {
@@ -191,6 +192,7 @@ KeyAction key_actions[] = {
     {'0', acionar_animacao_0},
     {'1', acionar_animacao_1},
     {'2', acionar_animacao_2},
+    {'4', acionar_animacao_4},
     {'5', acionar_animacao_5},
     {'8', acionar_animacao_8},
     {'A', desligar_leds},
