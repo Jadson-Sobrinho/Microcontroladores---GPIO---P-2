@@ -166,7 +166,7 @@ o.
 - **Descrição**: Acende todos os LEDs em vermelho com intensidade de 80%.
 
 #### `void ascender_verde50(uint32_t valor_led, PIO pio, uint sm, double r, double g, double b)`
-- **Descrição**: Acende todos os LEDs em vermelho com intensidade de 80%.
+- **Descrição**: Acende todos os LEDs em verde com intensidade de 50%.
 
 #### `void acender_branco20(uint32_t valor_led, PIO pio, uint sm, double r, double g, double b)`
 - **Descrição**: Acende todos os LEDs em branco com intensidade de 20%*:
