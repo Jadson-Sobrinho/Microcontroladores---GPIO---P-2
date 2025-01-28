@@ -51,39 +51,28 @@ int num_desenhos = sizeof(animacao_0) / sizeof(animacao_0[0]);
 double* animacao_1[] = {frame_1_1, frame_1_2, frame_1_3, frame_1_4, frame_1_5, frame_1_6, frame_1_7};
 int num_frames = sizeof(animacao_1) / sizeof(animacao_1[0]);
 
-/*
-    TODO: ADICIONAR VARIAVEIS DOS FRAMES DE ANIMAÇÃO 2
-*/
-    //Frames da animacao 2, por Wilton
-    double* animacao_2[] = {frame0, frame1, frame2, frame3, frame4, frame5, frame6, frame7, frame8, frame9};
-    int num_desenhos2 = sizeof(animacao_2) / sizeof(animacao_2[0]);
 
-/*
-    TODO: ADICIONAR VARIAVEIS DOS FRAMES DE ANIMAÇÃO 3
+//Frames da animacao 2, por Wilton
+double* animacao_2[] = {frame0, frame1, frame2, frame3, frame4, frame5, frame6, frame7, frame8, frame9};
+int num_desenhos2 = sizeof(animacao_2) / sizeof(animacao_2[0]);
 
-*/
-
+//Variaveis da animacao 3
 double* animacao_3[] = {frame00, frame01, frame02, frame03, frame04, frame05, frame06, frame07, frame08, frame09};
 int num_desenhos3 = sizeof(animacao_3) / sizeof(animacao_3[0]);
 
-/*Variveis da animação 4*/
+//Variveis da animação 4
 double* animacao_4[] = {desenho1_1, desenho2_2, desenho3_3, desenho4_4, desenho5_5, desenho6_6, desenho7_7, desenho8_8, desenho9_9, desenho10_10, desenho11_11, desenho12_12, desenho13_13, desenho14_14, desenho15_15, desenho16_16, desenho17_17, desenho18_18, desenho19_19, desenho20_20, desenho21_21, desenho22_22, desenho23_23, desenho24_24};
 int num_desenhos_4 = sizeof(animacao_4) / sizeof(animacao_4[0]);
 
-/*Variaveis da animação 5*/
+//Variaveis da animação 5
 double* animacao_5[] = {quadro0, quadro1, quadro2, quadro3, quadro4, quadro5, quadro6, quadro7, quadro8, quadro9, quadro10, quadro11, quadro12, quadro13, quadro14, quadro15, quadro16, quadro17, quadro18, quadro19, quadro20, quadro21};
 int num_desenhos_5 = sizeof(animacao_5) / sizeof(animacao_5[0]);
 
-// Frames da animação 6
+//Frames da animação 6
 double* animacao_6[] = {frame1_6, frame2_6, frame3_6, frame4_6, frame5_6, frame6_6, frame7_6, frame8_6, frame9_6};
 int num_desenhos_6 = sizeof(animacao_6) / sizeof(animacao_6[0]);
 
-/*
-    TODO: ADICIONAR VARIAVEIS DOS FRAMES DE ANIMAÇÃO 7
 
-*/
-
-//TODO: ADICIONAR VARIAVEIS DOS FRAMES DE ANIMAÇÃO 8
 // AUTOR: KEVEN CHRISTIAN ALVES CANDIDO
 double* animacao_8[] = {frame1_8, frame2_8, frame3_8, frame4_8, frame5_8, frame6_8};
 int num_desenhos_8 = sizeof(animacao_8) / sizeof(animacao_8[0]);
@@ -99,18 +88,10 @@ void acionar_animacao_1(uint32_t valor_led, PIO pio, uint sm, double r, double g
     exibir_animacao(animacao_1, num_frames, valor_led, pio, sm, r, g, b, 100);
 }
 
-/*
-    TODO: Funcão para acionar a animação 2
-*/
-    //Funcao para acionar animacao 2, por Wilton
+//Funcao para acionar animacao 2, por Wilton
 void acionar_animacao_2(uint32_t valor_led, PIO pio, uint sm, double r, double g, double b) {
     exibir_animacao(animacao_2, num_desenhos2, valor_led, pio, sm, r, g, b, 100);
 }
-
-/*
-    TODO: Funcão para acionar a animação 3
-
-*/
 
 void acionar_animacao_3(uint32_t valor_led, PIO pio, uint sm, double r, double g, double b) {
     exibir_animacao(animacao_3, num_desenhos3, valor_led, pio, sm, r, g, b, 100);
@@ -126,18 +107,11 @@ void acionar_animacao_5(uint32_t valor_led, PIO pio, uint sm, double r, double g
     exibir_animacao(animacao_5, num_desenhos_5, valor_led, pio, sm, r, g, b, 600);
 }
 
-
 // Função para acionar a animação 6
 void acionar_animacao_6(uint32_t valor_led, PIO pio, uint sm, double r, double g, double b) {
     exibir_animacao(animacao_6, num_desenhos_6, valor_led, pio, sm, r, g, b, 100);
 }
 
-/*
-    TODO: Funcão para acionar a animação 7
-
-*/
-
-// TODO: Funcão para acionar a animação 8
 // AUTOR: KEVEN CHRISTIAN ALVES CANDIDO
 void acionar_animacao_8(uint32_t valor_led, PIO pio, uint sm, double r, double g, double b) {
     exibir_animacao(animacao_8, num_desenhos_8, valor_led, pio, sm, r, g, b, 300);
@@ -156,10 +130,7 @@ void acender_azul(uint32_t valor_led, PIO pio, uint sm, double r, double g, doub
     }
 }
 
-/*
-    TODO:  Função para acender todos os LEDs
-           na cor vermelha, no nível de intensidade de 80% 
-*/
+
 //funcao para acender led VERMELHO no 80% (r = vermelho, g = verde, b = azul), por Wilton
 void acender_verm80(uint32_t valor_led, PIO pio, uint sm, double r, double g, double b) {
     for (int i = 0; i < NUMERO_DE_LEDS; i++) {
@@ -168,7 +139,7 @@ void acender_verm80(uint32_t valor_led, PIO pio, uint sm, double r, double g, do
     }
 }
 
-// TODO: Função para acender todos os LEDs  na cor verde, no nível de intensidade de 50%
+
 // AUTOR: Hercules Sampaio Oliveira
 void ascender_verde50(uint32_t valor_led, PIO pio, uint sm, double r, double g, double b){
     for(int i=0; i<NUMERO_DE_LEDS; i++){
@@ -177,7 +148,7 @@ void ascender_verde50(uint32_t valor_led, PIO pio, uint sm, double r, double g, 
     }
 }
 
-// TODO:  Função para acender todos os LEDs na cor branca no nível de intensidade de 20%
+
 // AUTOR: Keven Christian Alves Candido
 
 void acender_branco20(uint32_t valor_led, PIO pio, uint sm, double r, double g, double b) {
@@ -210,7 +181,7 @@ KeyAction key_actions[] = {
     {'D', ascender_verde50},
     {'6', acionar_animacao_6},
     {'#', acender_branco20}
-    //TODO: Outras teclas e ações...
+    
 };
 
 const int num_key_actions = sizeof(key_actions) / sizeof(key_actions[0]);
