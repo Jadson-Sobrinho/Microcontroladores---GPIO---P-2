@@ -14,6 +14,8 @@
 #include "lib/animacao_5.h"
 #include "lib/animacao_6.h"
 #include "lib/animacao_8.h"
+#include "lib/animacao_7.h"
+#include "lib/modo_gravacao.c"
 #include "pio_matrix.pio.h"
 
 
@@ -72,6 +74,11 @@ int num_desenhos_5 = sizeof(animacao_5) / sizeof(animacao_5[0]);
 double* animacao_6[] = {frame1_6, frame2_6, frame3_6, frame4_6, frame5_6, frame6_6, frame7_6, frame8_6, frame9_6};
 int num_desenhos_6 = sizeof(animacao_6) / sizeof(animacao_6[0]);
 
+//Frames da animação 7
+// AUTOR: KEVEN CHRISTIAN ALVES CANDIDO
+double* animacao_7[] = {frame1_7, frame2_7, frame3_7, frame4_7, frame5_7, frame6_7};
+int num_desenhos_7 = sizeof(animacao_7) / sizeof(animacao_7[0]);
+
 
 // AUTOR: KEVEN CHRISTIAN ALVES CANDIDO
 double* animacao_8[] = {frame1_8, frame2_8, frame3_8, frame4_8, frame5_8, frame6_8};
@@ -110,6 +117,12 @@ void acionar_animacao_5(uint32_t valor_led, PIO pio, uint sm, double r, double g
 // Função para acionar a animação 6
 void acionar_animacao_6(uint32_t valor_led, PIO pio, uint sm, double r, double g, double b) {
     exibir_animacao(animacao_6, num_desenhos_6, valor_led, pio, sm, r, g, b, 100);
+}
+
+// Função para acionar a animação 7
+// AUTOR: KEVEN CHRISTIAN ALVES CANDIDO
+void acionar_animacao_7(uint32_t valor_led, PIO pio, uint sm, double r, double g, double b) {
+    exibir_animacao(animacao_7, num_desenhos_7, valor_led, pio, sm, r, g, b, 100);
 }
 
 // AUTOR: KEVEN CHRISTIAN ALVES CANDIDO
@@ -161,6 +174,13 @@ void acender_branco20(uint32_t valor_led, PIO pio, uint sm, double r, double g, 
     
 }
 
+void habilitar_modo_gravacao(uint32_t valor_led, PIO pio, uint sm, double r, double g, double b) {
+    printf("Tecla '*' pressionada. Habilitando modo de gravação...\n");
+
+    // Reinicia o Pico no modo USB para gravação
+    reset_usb_boot(0, 0);
+}
+
 // Estrutura para mapeamento de teclas e ações
 typedef struct {
     char key;
@@ -174,13 +194,15 @@ KeyAction key_actions[] = {
     {'3', acionar_animacao_3},
     {'4', acionar_animacao_4},
     {'5', acionar_animacao_5},
+    {'6', acionar_animacao_6},
+    {'7', acionar_animacao_7},
     {'8', acionar_animacao_8},
     {'A', desligar_leds},
     {'B', acender_azul},
     {'C', acender_verm80},
     {'D', ascender_verde50},
-    {'6', acionar_animacao_6},
-    {'#', acender_branco20}
+    {'#', acender_branco20},
+    {'*', habilitar_modo_gravacao},
     
 };
 
@@ -221,8 +243,14 @@ int main() {
         char key = get_key(); 
 
         if (key != 0) {
-            printf("%c\n", key);
-            processar_tecla(key, valor_led, pio, sm, r, g, b);
+            // Itera sobre o mapeamento de teclas e ações
+            for (int i = 0; i < sizeof(key_actions) / sizeof(KeyAction); i++) {
+                if (key_actions[i].key == key) {
+                    // Executa a ação correspondente à tecla pressionada
+                    key_actions[i].action(valor_led, pio, sm, r, g, b);
+                    break;
+                }
+            }
         }
         sleep_ms(10);
     }

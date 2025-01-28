@@ -37,7 +37,7 @@ pico_sdk_init()
 
 
 
-add_executable(Matrix_leds Matrix_leds.c ./lib/keypad.c ./lib/animacao_0.c ./lib/animacao_1.c ./lib/animacao_2.c ./lib/animacao_3.c ./lib/animacao_4.c ./lib/animacao_5.c ./lib/animacao_6.c ./lib/animacao_8.c)
+add_executable(Matrix_leds Matrix_leds.c ./lib/keypad.c ./lib/animacao_0.c ./lib/animacao_1.c ./lib/animacao_2.c ./lib/animacao_3.c ./lib/animacao_4.c ./lib/animacao_5.c ./lib/animacao_6.c ./lib/animacao_8.c ./lib/animacao_7.c)
 
 
 
